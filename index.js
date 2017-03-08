@@ -19,7 +19,7 @@ function endpointURL(endpoint) {
 app.get('/user', function (req, res) {
   axios.get(endpointURL('/users/achen041bd2/projects'))
     .then(response => {
-      console.log(response.data)
+      console.dir(response.data)
       res.send(response.data)
     })
     .catch(error => {
