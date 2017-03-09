@@ -35,16 +35,15 @@ function prettyPrint(json) {
 app.get('/user', function (req, res) {
   prettyPrint(cachedData)
   res.send(cachedData)
-  /*
-  axios.get(endpointURL('/users/achen041bd2/projects'))
-    .then(response => {
-      console.dir(response.data)
-      res.send(response.data)
-    })
-    .catch(error => {
-      console.log('error', error)
-    })
-  */
+  //axios.get(endpointURL('/users/achen041bd2/projects'))
+    //.then(response => {
+      //console.dir(response.data)
+      //writeFile(fileURL, response.data)
+      //res.send(response.data)
+    //})
+    //.catch(error => {
+      //console.log('error', error)
+    //})
 })
 
 app.get('/projects', function (req, res) {
