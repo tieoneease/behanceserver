@@ -15,8 +15,8 @@ app.use(function(req, res, next) {
 });
 
 const BASE_URL = 'http://www.behance.net/v2'
-//const API_KEY = 'TC4iMKLEasvhlXHID8WE4Wg7cLBNHPIH'
-const API_KEY = 'dFPP4SSKThvd1avOMtwb4v8opsz8Ft78'
+const API_KEY = 'TC4iMKLEasvhlXHID8WE4Wg7cLBNHPIH'
+//const API_KEY = 'dFPP4SSKThvd1avOMtwb4v8opsz8Ft78'
 const client_id = '?client_id=' + API_KEY + '&per_page=25'
 
 function endpointURL(endpoint) {
