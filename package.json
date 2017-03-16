@@ -9,6 +9,7 @@
     "jsonfile": "^2.4.0"
   },
   "scripts": {
-    "postinstall": "npm install express"
+    "postinstall": "npm install express",
+    "start": "node index.js"
   }
 }
