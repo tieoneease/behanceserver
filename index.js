@@ -1,13 +1,6 @@
 var express = require('express')
 var app = express()
 var axios = require('axios')
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
 
 const BASE_URL = 'http://www.behance.net/v2'
 //const API_KEY = 'TC4iMKLEasvhlXHID8WE4Wg7cLBNHPIH'
@@ -17,6 +10,7 @@ const client_id = '?client_id=' + API_KEY + '&per_page=25'
 function endpointURL(endpoint) {
   return BASE_URL + endpoint + client_id
 }
+var port = process.env.PORT || 8000
 
 app.get('/', function(req,res) {
   res.send(200)
@@ -42,6 +36,14 @@ app.get('/projects/:projectId', function (req, res) {
     })
 })
 
-app.listen(process.env.PORT, function () {
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+app.listen(port, function () {
   console.log('Example app listening on port 3001')
 })
