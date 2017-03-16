@@ -3,8 +3,6 @@ var app = express()
 var axios = require('axios')
 var jsonfile = require('jsonfile')
 
-var fileURL = './data.json'
-var cachedData = require('./data.json')
 
 
 app.use(function(req, res, next) {
@@ -13,9 +11,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-const BASE_URL = 'https://api.behance.net/v2'
-const API_KEY = 'TC4iMKLEasvhlXHID8WE4Wg7cLBNHPIH'
-const client_id = '?client_id=' + API_KEY
+const BASE_URL = 'http://www.behance.net/v2'
+//const API_KEY = 'TC4iMKLEasvhlXHID8WE4Wg7cLBNHPIH'
+const API_KEY = 'dFPP4SSKThvd1avOMtwb4v8opsz8Ft78'
+const client_id = '?client_id=' + API_KEY + '&per_page=25'
 
 function endpointURL(endpoint) {
   return BASE_URL + endpoint + client_id
@@ -33,12 +32,8 @@ function prettyPrint(json) {
 }
 
 app.get('/user', function (req, res) {
-  //prettyPrint(cachedData)
-  //res.send(cachedData)
   axios.get(endpointURL('/users/achen041bd2/projects'))
     .then(response => {
-      console.dir(response.data)
-      writeFile(fileURL, response.data)
       res.send(response.data)
     })
     .catch(error => {
@@ -46,8 +41,14 @@ app.get('/user', function (req, res) {
     })
 })
 
-app.get('/projects', function (req, res) {
-
+app.get('/projects/:projectId', function (req, res) {
+  axios.get(endpointURL('/projects/' + req.params.projectId))
+    .then(response => {
+      res.send(response.data)
+    })
+    .catch(error => {
+      console.log('error', error)
+    })
 })
 
 app.listen(3001, function () {
