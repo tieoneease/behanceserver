@@ -1,7 +1,6 @@
 var express = require('express')
 var app = express()
 var axios = require('axios')
-var jsonfile = require('jsonfile')
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -19,16 +18,9 @@ function endpointURL(endpoint) {
   return BASE_URL + endpoint + client_id
 }
 
-function writeFile(file, data) {
-  jsonfile.writeFile(file, data, function (err) {
-    if (err) console.error(err)
-    else console.log('file written')
-  })
-}
-
-function prettyPrint(json) {
-  console.log(JSON.stringify(json, null, 4))
-}
+app.get('/', function(req,res) {
+  res.send(200)
+})
 
 app.get('/user', function (req, res) {
   axios.get(endpointURL('/users/achen041bd2/projects'))
