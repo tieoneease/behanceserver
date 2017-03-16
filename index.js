@@ -2,6 +2,18 @@ var express = require('express')
 var app = express()
 var axios = require('axios')
 
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 const BASE_URL = 'http://www.behance.net/v2'
 //const API_KEY = 'TC4iMKLEasvhlXHID8WE4Wg7cLBNHPIH'
 const API_KEY = 'dFPP4SSKThvd1avOMtwb4v8opsz8Ft78'
@@ -36,13 +48,6 @@ app.get('/projects/:projectId', function (req, res) {
     })
 })
 
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
 
 app.listen(port, function () {
   console.log('Example app listening on port ' + port)
